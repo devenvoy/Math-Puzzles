@@ -119,11 +119,12 @@ class leveldetail : AppCompatActivity() {
         puzzleboard = findViewById(R.id.level)
         levelImg = findViewById(R.id.levelimg)
         backnum = findViewById(R.id.backnum)
-        levelImg.setImageResource(imagearray[StartPage.level])
+
+        levelImg.setImageResource(imagearray[level])
 
 
 
-        puzzleboard.setText("Level ${StartPage.level + 1}")
+        puzzleboard.setText("Level ${level + 1}")
         for (buttonId in buttonIds) {
             val num: TextView = findViewById(buttonId)
 

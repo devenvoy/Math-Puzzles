@@ -12,6 +12,7 @@ class puzzles : AppCompatActivity() {
     lateinit var grid: GridView
 
     companion object {
+
         var levels = hashMapOf(
             "1" to false,
             "2" to false,
