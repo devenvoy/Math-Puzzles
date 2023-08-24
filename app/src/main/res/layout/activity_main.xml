@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".StartPage">
+
+    <TextView
+        android:id="@+id/math"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="cursive"
+        android:text="Math Puzzles"
+        android:textColor="#3949AB"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ImageView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@+id/math"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blackboard_main_menu" />
+
+    <TextView
+        android:id="@+id/continuebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/ImageView"
+        android:layout_alignTop="@id/ImageView"
+        android:layout_alignEnd="@id/ImageView"
+        android:layout_marginTop="180dp"
+        android:fontFamily="@font/chawp"
+        android:gravity="center"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/puzzlebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/continuebtn"
+        android:layout_alignStart="@id/ImageView"
+        android:layout_alignEnd="@id/ImageView"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/chawp"
+        android:gravity="center"
+        android:text="PUZZLES"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/butpro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/puzzlebtn"
+        android:layout_alignStart="@id/ImageView"
+        android:layout_alignEnd="@id/ImageView"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/chawp"
+        android:gravity="center"
+        android:text="BUY PRO"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="right">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:padding="4dp"
+            android:src="@drawable/shareus" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/emailus" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
