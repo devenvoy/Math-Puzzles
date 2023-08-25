@@ -36,7 +36,7 @@
 
 
     <ImageView
-        android:id="@+id/levelboard"
+        android:id="@+id/lvlshowimg"
         android:layout_width="200dp"
         android:layout_height="?actionBarSize"
         android:layout_centerHorizontal="true"
@@ -49,7 +49,7 @@
         android:src="@drawable/level_board" />
 
     <TextView
-        android:id="@+id/level"
+        android:id="@+id/levelboard"
         android:layout_width="200dp"
         android:layout_height="?actionBarSize"
         android:layout_centerHorizontal="true"

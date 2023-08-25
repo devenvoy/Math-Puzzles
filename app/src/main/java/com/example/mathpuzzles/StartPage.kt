@@ -20,7 +20,9 @@ class StartPage : AppCompatActivity() {
         var currentLvl = 0
 
         var PENDING : String = "pending"
-        var levellist : ArrayList<String>()
+        var CLEAR : String = "clear"
+        var SKIP : String = "skip"
+        var levellist = ArrayList<String>()
 
     }
 
@@ -30,17 +32,27 @@ class StartPage : AppCompatActivity() {
 
         btn_continue = findViewById(R.id.continuebtn)
         btn_puzzle = findViewById(R.id.puzzlebtn)
-        btn_buyPro = findViewById(R.id.bproo)
+        btn_buyPro = findViewById(R.id.buypro)
 
         sp = getSharedPreferences("DataStore", MODE_PRIVATE)
         editor = sp.edit()
+
+        currentLvl = sp.getInt("curlvl" , 0)
 
         for (x in 0 .. 69){
             levellist.add(PENDING)
             editor.putString("status$x",PENDING)
         }
 
+        btn_continue.setOnClickListener {
+            val curlevel = Intent(this@StartPage , leveldetail::class.java)
+            startActivity(curlevel)
+        }
 
+        btn_puzzle.setOnClickListener {
+            val puzlevel = Intent(this@StartPage , puzzles::class.java)
+            startActivity(puzlevel)
+        }
 
 
 

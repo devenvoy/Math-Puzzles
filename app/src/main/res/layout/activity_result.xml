@@ -30,7 +30,7 @@
         android:src="@drawable/trophy" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bcontinuee"
+        android:id="@+id/btn_continuee"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
@@ -42,7 +42,7 @@
         android:textStyle="italic" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bmainmenu"
+        android:id="@+id/btn_mainmenu"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
@@ -54,7 +54,7 @@
         android:textStyle="italic" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bproo"
+        android:id="@+id/btn_proo"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"

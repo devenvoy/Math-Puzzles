@@ -7,6 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mathpuzzles.StartPage.Companion.CLEAR
+import com.example.mathpuzzles.StartPage.Companion.SKIP
+import com.example.mathpuzzles.StartPage.Companion.currentLvl
+import com.example.mathpuzzles.StartPage.Companion.editor
+import com.example.mathpuzzles.StartPage.Companion.levellist
+import com.example.mathpuzzles.StartPage.Companion.sp
 
 class leveldetail : AppCompatActivity() {
 
@@ -84,7 +90,6 @@ class leveldetail : AppCompatActivity() {
         R.drawable.p70
     )
 
-
     val buttonIds = arrayOf(
         R.id.num1,
         R.id.num2,
@@ -97,6 +102,8 @@ class leveldetail : AppCompatActivity() {
         R.id.num9,
         R.id.num0
     )
+
+
     lateinit var textbox: TextView
     lateinit var puzzleboard: TextView
     lateinit var backnum: ImageView
@@ -104,12 +111,72 @@ class leveldetail : AppCompatActivity() {
     lateinit var submit: Button
     lateinit var skipbtn: ImageView
 
+    var ld_level = sp.getInt("curlvl",0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leveldetail)
 
 
+        textbox = findViewById(R.id.numinput)
 
+        puzzleboard = findViewById(R.id.levelboard)
+
+        backnum = findViewById(R.id.backnum)
+
+        levelImg = findViewById(R.id.levelimg)
+
+        submit = findViewById(R.id.subbtn)
+
+        skipbtn = findViewById(R.id.skipbtn)
+
+        puzzleboard.text = "Level ${ld_level + 1}"
+
+        levelImg.setImageResource(imagearray[ld_level])
+
+        for (button in buttonIds) {
+            val numbtn: TextView = findViewById(button)
+
+            numbtn.setOnClickListener {
+                textbox.text = "${textbox.text}${numbtn.text}"
+            }
+        }
+
+        backnum.setOnClickListener {
+            if (textbox.text.isNotEmpty()) {
+                textbox.text = textbox.text.toString().subSequence(0, textbox.text.length - 1)
+            }
+        }
+
+        submit.setOnClickListener {
+            if (textbox.text.toString().equals("${ld_level + 1}")) {
+                editor.putString("status$ld_level", CLEAR)
+                levellist[ld_level] = CLEAR
+                currentLvl++
+                editor.putString("status$currentLvl", SKIP)
+                levellist[ld_level] = SKIP
+                editor.putInt("curlvl", currentLvl)
+                editor.apply()
+                startActivity(
+                    Intent(this@leveldetail, result::class.java).putExtra("cnt", currentLvl))
+                finish()
+            }
+            else{
+                Toast.makeText(this@leveldetail , "Wrong Answer",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        skipbtn.setOnClickListener {
+            editor.putString("status$ld_level", SKIP)
+            levellist[ld_level] = SKIP
+            currentLvl++
+            editor.putString("status$currentLvl", SKIP)
+            levellist[ld_level] = SKIP
+            editor.putInt("curlvl", currentLvl)
+            editor.apply()
+            startActivity(
+                Intent(this@leveldetail, leveldetail::class.java).putExtra("cnt", currentLvl))
+            finish()
+        }
 
 
     }
