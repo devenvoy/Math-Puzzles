@@ -1,12 +1,8 @@
 package com.example.mathpuzzles
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.GridView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mathpuzzles.StartPage.Companion.levellist
 
 class puzzles : AppCompatActivity() {
 
@@ -18,8 +14,8 @@ class puzzles : AppCompatActivity() {
 
         gridview = findViewById(R.id.gridview)
 
-//        var myadapter  = myAdapter(this@puzzles , levellist)
-//        gridview.adapter = myadapter
+        var myadapter  = myAdapter(this@puzzles)
+        gridview.adapter = myadapter
 
 
 
