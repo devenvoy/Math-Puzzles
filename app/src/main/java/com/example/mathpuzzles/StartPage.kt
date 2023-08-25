@@ -1,5 +1,6 @@
 package com.example.mathpuzzles
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
@@ -9,40 +10,39 @@ import androidx.appcompat.app.AppCompatActivity
 
 class StartPage : AppCompatActivity() {
 
-    lateinit var continuebtn: TextView
-    lateinit var puzzlelvl: TextView
+    lateinit var btn_continue : TextView
+    lateinit var btn_puzzle : TextView
+    lateinit var btn_buyPro : TextView
 
-    companion object {
+    companion object{
+        lateinit var sp : SharedPreferences
+        lateinit var editor : Editor
+        var currentLvl = 0
 
-        lateinit var ssp: SharedPreferences
-        lateinit var editor: Editor
-        var level = 0
+        var PENDING : String = "pending"
+        var levellist : ArrayList<String>()
+
     }
-
-    lateinit var buypro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        continuebtn = findViewById(R.id.continuebtn)
-        puzzlelvl = findViewById(R.id.puzzlebtn)
-        buypro = findViewById(R.id.butpro)
+        btn_continue = findViewById(R.id.continuebtn)
+        btn_puzzle = findViewById(R.id.puzzlebtn)
+        btn_buyPro = findViewById(R.id.bproo)
 
-        ssp = getSharedPreferences("level", MODE_PRIVATE)
-        editor = ssp.edit()
-        level = ssp.getInt("level",0)
+        sp = getSharedPreferences("DataStore", MODE_PRIVATE)
+        editor = sp.edit()
 
-        val levels = Intent(this@StartPage, puzzles::class.java)
-        val leveldet = Intent(this@StartPage, leveldetail::class.java)
-
-        puzzlelvl.setOnClickListener {
-            startActivity(levels)
+        for (x in 0 .. 69){
+            levellist.add(PENDING)
+            editor.putString("status$x",PENDING)
         }
 
-        continuebtn.setOnClickListener {
-            startActivity(leveldet)
-        }
+
+
+
 
     }
 }

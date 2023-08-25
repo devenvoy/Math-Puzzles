@@ -7,9 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mathpuzzles.StartPage.Companion.editor
-import com.example.mathpuzzles.StartPage.Companion.level
-import com.example.mathpuzzles.StartPage.Companion.ssp
 
 class leveldetail : AppCompatActivity() {
 
@@ -111,67 +108,8 @@ class leveldetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leveldetail)
 
-        textbox = findViewById(R.id.numinput)
-        submit = findViewById(R.id.subbtn)
-
-        skipbtn = findViewById(R.id.skipbtn)
-
-        puzzleboard = findViewById(R.id.level)
-        levelImg = findViewById(R.id.levelimg)
-        backnum = findViewById(R.id.backnum)
-
-        editor = ssp.edit()
-
-        levelImg.setImageResource(imagearray[level])
-
-        puzzleboard.text = "Level ${level + 1}"
-
-        for (buttonId in buttonIds) {
-            val num: TextView = findViewById(buttonId)
-
-            num.setOnClickListener {
-                textbox.text = "${textbox.text}${num.text}"
-            }
-        }
 
 
-        skipbtn.setOnClickListener {
-            if (level < 69) {
-                editor.putString("$level" , "Skip")
-                level++
-                editor.putInt("level" , level)
-                editor.putString("$level" , "skip")
-                editor.apply()
-                startActivity(Intent(this@leveldetail, leveldetail::class.java))
-                finish()
-            } else {
-                Toast.makeText(this@leveldetail, "No More Level ", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        backnum.setOnClickListener {
-            if (textbox.text.isNotEmpty()) {
-                textbox.text = textbox.text.toString().subSequence(0, textbox.text.length - 1)
-            }
-        }
-
-        val ir = Intent(this@leveldetail, result::class.java)
-
-        submit.setOnClickListener {
-            if (textbox.text == (level + 1).toString()) {
-
-                editor.putString("$level" , "clear")
-                level++
-                editor.putInt("level" , level)
-                editor.putString("$level" , "skip")
-                editor.apply()
-                startActivity(ir)
-                finish()
-            } else {
-                Toast.makeText(this@leveldetail, "Wrong Answer", Toast.LENGTH_SHORT).show()
-            }
-
-        }
 
 
     }
