@@ -7,12 +7,12 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class MyAdapter(var puzzles: puzzles, var plvls: ArrayList<String>) : BaseAdapter() {
+class MyAdapter(var puzzles: puzzles) : BaseAdapter() {
 
     lateinit var imge: ImageView
     lateinit var num: TextView
 
-    override fun getCount(): Int = plvls.size
+    override fun getCount(): Int = StartPage.levelList.size
 
     override fun getItem(position: Int): Any = position
 
@@ -25,20 +25,21 @@ class MyAdapter(var puzzles: puzzles, var plvls: ArrayList<String>) : BaseAdapte
         imge = vv.findViewById(R.id.lockimg)
         num = vv.findViewById(R.id.levelnum)
 
-        if (plvls[position] == "pending") {
-
-            imge.setImageResource(R.drawable.lock)
-
-        } else if (plvls[position] == "skip") {
-
-            num.text = "${position + 1}"
-            imge.setBackgroundResource(R.drawable.lockimgbg)
-
-        } else if (plvls[position] == "clear") {
+        if (StartPage.levelList[position].equals("clear")) {
 
             num.text = "${position + 1}"
             imge.setImageResource(R.drawable.tick)
             imge.setBackgroundResource(R.drawable.lockimgbg)
+
+        } else if (StartPage.levelList[position].equals("skip")) {
+
+            num.text = "${position + 1}"
+            imge.setBackgroundResource(R.drawable.lockimgbg)
+            imge.setImageResource(0)
+
+        } else if (StartPage.levelList[position].equals("pending")) {
+
+            imge.setImageResource(R.drawable.lock)
 
         }
 

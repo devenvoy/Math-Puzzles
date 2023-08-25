@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mathpuzzles.StartPage.Companion.level
 
 class result : AppCompatActivity() {
 
@@ -15,22 +14,26 @@ class result : AppCompatActivity() {
     lateinit var probtn: Button
     lateinit var textnumber: TextView
 
+
+    var lll = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+
+        lll = intent.getIntExtra("cntt",0)
         con = findViewById(R.id.bcontinuee)
         mainmenu = findViewById(R.id.bmainmenu)
         probtn = findViewById(R.id.bproo)
         textnumber = findViewById(R.id.textnumber)
 
 
-        textnumber.text = "Level ${level + 1} Completed"
-        val nextlvl = Intent(this@result, leveldetail::class.java)
+        textnumber.text = "Level ${lll} Completed"
+        val nextlvl = Intent(this@result, leveldetail::class.java).putExtra("cnt",lll)
         val mainpage = Intent(this@result, StartPage::class.java)
 
         con.setOnClickListener {
-            if (level < 69) {
+            if (lll < 69) {
                 startActivity(nextlvl)
                 finish()
             } else {

@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mathpuzzles.StartPage.Companion.editor
-import com.example.mathpuzzles.StartPage.Companion.level
 import com.example.mathpuzzles.StartPage.Companion.ssp
 
 class leveldetail : AppCompatActivity() {
@@ -111,21 +110,25 @@ class leveldetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leveldetail)
 
+
+        var levell = intent.getIntExtra("cnt", 0)
+
         textbox = findViewById(R.id.numinput)
         submit = findViewById(R.id.subbtn)
-
         skipbtn = findViewById(R.id.skipbtn)
-
         puzzleboard = findViewById(R.id.level)
         levelImg = findViewById(R.id.levelimg)
         backnum = findViewById(R.id.backnum)
 
         editor = ssp.edit()
 
-        levelImg.setImageResource(imagearray[level])
+        // setting challenge img according to level from array of images
+        levelImg.setImageResource(imagearray[levell])
 
-        puzzleboard.text = "Level ${level + 1}"
+        // put level no. in Puzzle level Board
+        puzzleboard.text = "Level ${levell + 1}"
 
+        // loop to use 0 - 9 button used as a Text
         for (buttonId in buttonIds) {
             val num: TextView = findViewById(buttonId)
 
@@ -134,15 +137,21 @@ class leveldetail : AppCompatActivity() {
             }
         }
 
-
         skipbtn.setOnClickListener {
-            if (level < 69) {
-                editor.putString("$level" , "Skip")
-                level++
-                editor.putInt("level" , level)
-                editor.putString("$level" , "skip")
+            if (levell < 69) {
+                editor.putString("status$levell", "skip")
+                StartPage.levelList[levell] = "skip";
+
+                levell++
+                editor.putInt("level", levell)
+                editor.putString("$levell", "skip")
                 editor.apply()
-                startActivity(Intent(this@leveldetail, leveldetail::class.java))
+                startActivity(
+                    Intent(this@leveldetail, leveldetail::class.java).putExtra(
+                        "cnt",
+                        levell
+                    )
+                )
                 finish()
             } else {
                 Toast.makeText(this@leveldetail, "No More Level ", Toast.LENGTH_SHORT).show()
@@ -155,16 +164,18 @@ class leveldetail : AppCompatActivity() {
             }
         }
 
-        val ir = Intent(this@leveldetail, result::class.java)
 
         submit.setOnClickListener {
-            if (textbox.text == (level + 1).toString()) {
+            if (textbox.text == (levell + 1).toString()) {
 
-                editor.putString("$level" , "clear")
-                level++
-                editor.putInt("level" , level)
-                editor.putString("$level" , "skip")
+                StartPage.levelList[levell] = "clear";
+                editor.putString("$levell", "clear")
+                levell++
+                editor.putInt("level", levell)
+//                editor.putString("$levell" , "skip")
                 editor.apply()
+                val ir = Intent(this@leveldetail, result::class.java).putExtra("cntt", levell)
+
                 startActivity(ir)
                 finish()
             } else {

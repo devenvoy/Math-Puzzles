@@ -16,14 +16,20 @@ class StartPage : AppCompatActivity() {
 
         lateinit var ssp: SharedPreferences
         lateinit var editor: Editor
-        var level = 0
+
+        val levelList = ArrayList<String>()
+
     }
+    var level = 0
+
 
     lateinit var buypro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         continuebtn = findViewById(R.id.continuebtn)
         puzzlelvl = findViewById(R.id.puzzlebtn)
@@ -33,8 +39,14 @@ class StartPage : AppCompatActivity() {
         editor = ssp.edit()
         level = ssp.getInt("level",0)
 
+
+        for (i in 0..69){
+            var sat = ssp.getString("status$i","pending")
+            levelList.add(sat.toString())
+        }
+
         val levels = Intent(this@StartPage, puzzles::class.java)
-        val leveldet = Intent(this@StartPage, leveldetail::class.java)
+        val leveldet = Intent(this@StartPage, leveldetail::class.java).putExtra("cnt",levels)
 
         puzzlelvl.setOnClickListener {
             startActivity(levels)
