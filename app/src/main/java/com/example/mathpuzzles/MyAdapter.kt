@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.mathpuzzles.puzzles.Companion.levels
 
-class MyAdapter(var puzzles: puzzles, var plvls: Array<String>) : BaseAdapter() {
+class MyAdapter(var puzzles: puzzles, var plvls: ArrayList<String>) : BaseAdapter() {
 
     lateinit var imge: ImageView
     lateinit var num: TextView
@@ -26,17 +25,23 @@ class MyAdapter(var puzzles: puzzles, var plvls: Array<String>) : BaseAdapter() 
         imge = vv.findViewById(R.id.lockimg)
         num = vv.findViewById(R.id.levelnum)
 
-        if (plvls[position].isNotEmpty()) {
-            num.text = plvls[position]
+        if (plvls[position] == "pending") {
+
+            imge.setImageResource(R.drawable.lock)
+
+        } else if (plvls[position] == "skip") {
+
+            num.text = "${position + 1}"
             imge.setBackgroundResource(R.drawable.lockimgbg)
-            imge.setImageResource(R.drawable.lockimgbg)
-            if (levels[plvls[position]] == true) {
-                num.text = plvls[position]
-                imge.setImageResource(R.drawable.tick)
-            } else {
-                num.text = plvls[position]
-            }
+
+        } else if (plvls[position] == "clear") {
+
+            num.text = "${position + 1}"
+            imge.setImageResource(R.drawable.tick)
+            imge.setBackgroundResource(R.drawable.lockimgbg)
+
         }
+
         return vv
     }
 

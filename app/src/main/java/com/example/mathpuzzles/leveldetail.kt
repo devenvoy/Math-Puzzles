@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mathpuzzles.StartPage.Companion.editor
 import com.example.mathpuzzles.StartPage.Companion.level
-import com.example.mathpuzzles.puzzles.Companion.levels
-import com.example.mathpuzzles.puzzles.Companion.plevels
+import com.example.mathpuzzles.StartPage.Companion.ssp
 
 class leveldetail : AppCompatActivity() {
 
@@ -120,11 +120,12 @@ class leveldetail : AppCompatActivity() {
         levelImg = findViewById(R.id.levelimg)
         backnum = findViewById(R.id.backnum)
 
+        editor = ssp.edit()
+
         levelImg.setImageResource(imagearray[level])
 
+        puzzleboard.text = "Level ${level + 1}"
 
-
-        puzzleboard.setText("Level ${level + 1}")
         for (buttonId in buttonIds) {
             val num: TextView = findViewById(buttonId)
 
@@ -136,8 +137,11 @@ class leveldetail : AppCompatActivity() {
 
         skipbtn.setOnClickListener {
             if (level < 69) {
+                editor.putString("$level" , "Skip")
                 level++
-                plevels[level] = (level + 1).toString()
+                editor.putInt("level" , level)
+                editor.putString("$level" , "skip")
+                editor.apply()
                 startActivity(Intent(this@leveldetail, leveldetail::class.java))
                 finish()
             } else {
@@ -155,9 +159,12 @@ class leveldetail : AppCompatActivity() {
 
         submit.setOnClickListener {
             if (textbox.text == (level + 1).toString()) {
-                levels[plevels[level]] = true
+
+                editor.putString("$level" , "clear")
                 level++
-                plevels[level] = (level + 1).toString()
+                editor.putInt("level" , level)
+                editor.putString("$level" , "skip")
+                editor.apply()
                 startActivity(ir)
                 finish()
             } else {

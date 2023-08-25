@@ -1,6 +1,8 @@
 package com.example.mathpuzzles
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,8 @@ class StartPage : AppCompatActivity() {
 
     companion object {
 
+        lateinit var ssp: SharedPreferences
+        lateinit var editor: Editor
         var level = 0
     }
 
@@ -24,6 +28,10 @@ class StartPage : AppCompatActivity() {
         continuebtn = findViewById(R.id.continuebtn)
         puzzlelvl = findViewById(R.id.puzzlebtn)
         buypro = findViewById(R.id.butpro)
+
+        ssp = getSharedPreferences("level", MODE_PRIVATE)
+        editor = ssp.edit()
+        level = ssp.getInt("level",0)
 
         val levels = Intent(this@StartPage, puzzles::class.java)
         val leveldet = Intent(this@StartPage, leveldetail::class.java)
