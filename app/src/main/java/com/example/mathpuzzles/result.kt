@@ -29,7 +29,7 @@ class result : AppCompatActivity() {
         textnumber.text = "Level $ll Completed"
 
         btn_continuee.setOnClickListener {
-            startActivity(Intent(this@result , leveldetail::class.java))
+            startActivity(Intent(this@result , leveldetail::class.java).putExtra("cnt" , ll))
             finish()
         }
 

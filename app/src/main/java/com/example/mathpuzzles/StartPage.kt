@@ -40,18 +40,21 @@ class StartPage : AppCompatActivity() {
         currentLvl = sp.getInt("curlvl" , 0)
 
         for (x in 0 .. 69){
-            levellist.add(PENDING)
-            editor.putString("status$x",PENDING)
+            var ss : String = sp.getString("status$x",PENDING).toString()
+            levellist.add(ss)
         }
 
         btn_continue.setOnClickListener {
             val curlevel = Intent(this@StartPage , leveldetail::class.java)
+            curlevel.putExtra("cnt" , currentLvl)
             startActivity(curlevel)
+            finish()
         }
 
         btn_puzzle.setOnClickListener {
             val puzlevel = Intent(this@StartPage , puzzles::class.java)
             startActivity(puzlevel)
+            finish()
         }
 
 

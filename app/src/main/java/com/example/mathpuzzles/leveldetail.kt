@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mathpuzzles.StartPage.Companion.CLEAR
 import com.example.mathpuzzles.StartPage.Companion.SKIP
-import com.example.mathpuzzles.StartPage.Companion.currentLvl
 import com.example.mathpuzzles.StartPage.Companion.editor
 import com.example.mathpuzzles.StartPage.Companion.levellist
-import com.example.mathpuzzles.StartPage.Companion.sp
 
 class leveldetail : AppCompatActivity() {
 
@@ -111,11 +109,13 @@ class leveldetail : AppCompatActivity() {
     lateinit var submit: Button
     lateinit var skipbtn: ImageView
 
-    var ld_level = sp.getInt("curlvl",0)
+    var ld_level = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leveldetail)
 
+
+        ld_level = intent.getIntExtra("cnt", 0)
 
         textbox = findViewById(R.id.numinput)
 
@@ -151,30 +151,31 @@ class leveldetail : AppCompatActivity() {
             if (textbox.text.toString().equals("${ld_level + 1}")) {
                 editor.putString("status$ld_level", CLEAR)
                 levellist[ld_level] = CLEAR
-                currentLvl++
-                editor.putString("status$currentLvl", SKIP)
+                ld_level++
+                editor.putString("status$ld_level", SKIP)
                 levellist[ld_level] = SKIP
-                editor.putInt("curlvl", currentLvl)
+                editor.putInt("curlvl", ld_level)
                 editor.apply()
                 startActivity(
-                    Intent(this@leveldetail, result::class.java).putExtra("cnt", currentLvl))
+                    Intent(this@leveldetail, result::class.java).putExtra("cnt", ld_level)
+                )
                 finish()
-            }
-            else{
-                Toast.makeText(this@leveldetail , "Wrong Answer",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@leveldetail, "Wrong Answer", Toast.LENGTH_SHORT).show()
             }
         }
 
         skipbtn.setOnClickListener {
             editor.putString("status$ld_level", SKIP)
             levellist[ld_level] = SKIP
-            currentLvl++
-            editor.putString("status$currentLvl", SKIP)
+            ld_level++
+            editor.putString("status$ld_level", SKIP)
             levellist[ld_level] = SKIP
-            editor.putInt("curlvl", currentLvl)
+            editor.putInt("curlvl", ld_level)
             editor.apply()
             startActivity(
-                Intent(this@leveldetail, leveldetail::class.java).putExtra("cnt", currentLvl))
+                Intent(this@leveldetail, leveldetail::class.java).putExtra("cnt", ld_level)
+            )
             finish()
         }
 
