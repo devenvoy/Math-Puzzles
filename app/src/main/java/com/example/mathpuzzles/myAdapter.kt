@@ -10,6 +10,7 @@ import com.example.mathpuzzles.StartPage.Companion.CLEAR
 import com.example.mathpuzzles.StartPage.Companion.PENDING
 import com.example.mathpuzzles.StartPage.Companion.SKIP
 import com.example.mathpuzzles.StartPage.Companion.levellist
+import com.example.mathpuzzles.StartPage.Companion.sp
 
 class myAdapter( var puzzpage: puzzles) : BaseAdapter() {
 
@@ -26,6 +27,10 @@ class myAdapter( var puzzpage: puzzles) : BaseAdapter() {
 
         lockimg = itemView.findViewById(R.id.lockimg)
         levelnum = itemView.findViewById(R.id.levelnum)
+
+        if (position == sp.getInt("curlvl",0)){
+            levellist[position] = SKIP
+        }
 
         if (levellist[position] == CLEAR){
 
@@ -44,7 +49,6 @@ class myAdapter( var puzzpage: puzzles) : BaseAdapter() {
             lockimg.setImageResource(R.drawable.lock)
 
         }
-
 
         return itemView
     }

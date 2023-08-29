@@ -110,10 +110,17 @@ class leveldetail : AppCompatActivity() {
     lateinit var skipbtn: ImageView
 
     var ld_level = 0
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(this@leveldetail, StartPage::class.java)
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leveldetail)
-
 
         ld_level = intent.getIntExtra("cnt", 0)
 

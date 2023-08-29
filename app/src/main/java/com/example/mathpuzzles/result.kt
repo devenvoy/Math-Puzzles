@@ -15,6 +15,12 @@ class result : AppCompatActivity() {
     lateinit var btn_mainmenu : Button
     lateinit var btn_proo : Button
     var ll = 0
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this@result , StartPage::class.java))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)

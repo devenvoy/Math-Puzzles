@@ -13,6 +13,12 @@ class puzzles : AppCompatActivity() {
 
     lateinit var gridview: GridView
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(this@puzzles, StartPage::class.java)
+        )
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_puzzles)

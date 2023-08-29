@@ -39,6 +39,7 @@ class StartPage : AppCompatActivity() {
 
         currentLvl = sp.getInt("curlvl" , 0)
 
+        levellist.clear()
         for (x in 0 .. 69){
             var ss : String = sp.getString("status$x",PENDING).toString()
             levellist.add(ss)
