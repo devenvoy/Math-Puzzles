@@ -12,7 +12,7 @@ import com.example.mathpuzzles.StartPage.Companion.SKIP
 import com.example.mathpuzzles.StartPage.Companion.levellist
 import com.example.mathpuzzles.StartPage.Companion.sp
 
-class myAdapter( var puzzpage: puzzles) : BaseAdapter() {
+class myAdapter(var puzzpage: puzzles) : BaseAdapter() {
 
     lateinit var lockimg : ImageView
     lateinit var levelnum : TextView
