@@ -14,6 +14,7 @@
     <TextView
         android:id="@+id/levelnum"
         android:layout_width="120dp"
+        android:textColor="@color/black"
         android:layout_height="80dp"
         android:fontFamily="@font/chawp"
         android:gravity="center"
